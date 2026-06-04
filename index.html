@@ -401,8 +401,24 @@
     table.compare tbody td:first-child { text-align: left; color: var(--white); font-weight: 500; font-family: var(--f-head); }
     table.compare tbody tr:nth-child(odd) td { background: rgba(255,255,255,0.018); }
     table.compare tbody tr:hover td { background: rgba(var(--gold-rgb), 0.06); }
-    .check { color: var(--gold); font-size: 1.15rem; font-weight: 700; }
-    .dash { color: var(--silver); }
+    .check, .yes { color: #46c46a; font-size: 1.2rem; font-weight: 700; }
+    .dash, .no  { color: #d4564b; font-size: 1.08rem; font-weight: 700; }
+
+    /* Column emphasis steps up 1 -> 2 -> 3 (Beginner < Perfect Pitch < Complete) */
+    table.compare thead th:nth-child(2) { font-size: 0.9rem; }
+    table.compare thead th:nth-child(3) { font-size: 1.02rem; }
+    table.compare thead th:nth-child(4) { font-size: 1.16rem; color: var(--amber); border-top: 3px solid var(--gold); }
+    .col-tag { display: block; font-family: var(--f-head); font-size: 0.6rem; letter-spacing: 0.16em; color: var(--gold); margin-top: 5px; text-transform: uppercase; font-weight: 700; }
+    /* placed after striping/hover so source-order wins the specificity tie */
+    table.compare tbody tr td:nth-child(3) { background: rgba(var(--gold-rgb), 0.045); }
+    table.compare tbody tr td:nth-child(4) {
+      background: rgba(var(--gold-rgb), 0.10);
+      border-left: 1px solid rgba(var(--gold-rgb), 0.45);
+      border-right: 1px solid rgba(var(--gold-rgb), 0.45);
+    }
+    table.compare tbody tr:hover td:nth-child(4) { background: rgba(var(--gold-rgb), 0.16); }
+    table.compare thead th:nth-child(4) { background: linear-gradient(180deg, #1c2a17, #16203a); }
+    table.compare tbody tr:last-child td:nth-child(4) { border-bottom: 2px solid rgba(var(--gold-rgb), 0.5); }
 
     /* ============================================================
        FAQ ACCORDION
@@ -446,6 +462,40 @@
     .footer-fine { color: #6b7280; font-size: 0.78rem; }
 
     /* ============================================================
+       DECORATIONS: PATENT BLUEPRINT MOTIFS + INSPIRING IMAGERY
+    ============================================================ */
+    .deco { position: absolute; z-index: 0; pointer-events: none; }
+    .bp { width: 230px; height: auto; color: var(--gold); opacity: 0.09; }
+    .bp svg, .bp { display: block; }
+    .bp use { color: var(--gold); }
+    .bp.silver { color: var(--silver); opacity: 0.07; }
+    .deco-left   { left: -36px; }
+    .deco-right  { right: -36px; }
+    .deco-top    { top: 70px; }
+    .deco-mid    { top: 50%; transform: translateY(-50%); }
+    .deco-mid-r  { top: 50%; transform: translateY(-50%) scaleX(-1); }
+    .deco-bottom { bottom: 48px; }
+    .deco-flip   { transform: scaleX(-1); }
+
+    /* Inspiring stock photos tucked into genuine blank space (wide screens only) */
+    .deco-photo {
+      position: absolute; z-index: 0; pointer-events: none;
+      width: 184px; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden;
+      border: 2px solid rgba(var(--gold-rgb), 0.55);
+      box-shadow: 0 20px 55px rgba(0,0,0,0.55);
+    }
+    .deco-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) contrast(1.06) brightness(0.9); }
+    .deco-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(201,168,76,0.10), transparent 35%, rgba(10,22,40,0.55)); }
+
+    /* Faded inspiring backdrop behind the final CTA */
+    .cta-bgphoto { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .cta-bgphoto img { width: 100%; height: 100%; object-fit: cover; opacity: 0.12; filter: grayscale(0.25) contrast(1.1); }
+    .cta-bgphoto::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,22,40,0.4), var(--navy) 75%); }
+
+    @media (max-width: 1100px) { .bp { display: none; } }
+    @media (max-width: 1480px) { .deco-photo { display: none; } } /* avoid overlap on laptops */
+
+    /* ============================================================
        SCROLL REVEAL
     ============================================================ */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -483,6 +533,43 @@
 
   <!-- Fire mouse trail -->
   <canvas id="fireCanvas"></canvas>
+
+  <!-- Reusable patent / blueprint figure (decorative) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="bp-fig" viewBox="0 0 240 300">
+      <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <!-- sheet corner ticks -->
+        <path d="M8 8 H26 M8 8 V26 M232 8 H214 M232 8 V26 M8 292 H26 M8 292 V274 M232 292 H214 M232 292 V274"/>
+        <!-- gear / mechanism -->
+        <circle cx="120" cy="116" r="66" stroke-width="6" stroke-dasharray="5 9"/>
+        <circle cx="120" cy="116" r="58"/>
+        <circle cx="120" cy="116" r="40"/>
+        <circle cx="120" cy="116" r="9"/>
+        <line x1="120" y1="40" x2="120" y2="192"/>
+        <line x1="44" y1="116" x2="196" y2="116"/>
+        <!-- exploded part with leader -->
+        <rect x="150" y="206" width="62" height="40" rx="4"/>
+        <line x1="162" y1="206" x2="162" y2="246"/>
+        <line x1="186" y1="206" x2="186" y2="246"/>
+        <line x1="150" y1="176" x2="170" y2="150"/>
+        <circle cx="176" cy="142" r="11"/>
+        <line x1="70" y1="170" x2="40" y2="206"/>
+        <circle cx="32" cy="214" r="11"/>
+        <!-- dimension line -->
+        <line x1="44" y1="262" x2="120" y2="262"/>
+        <path d="M44 258 L44 266 M120 258 L120 266"/>
+        <!-- hatching -->
+        <g stroke-width="0.7">
+          <line x1="44" y1="232" x2="58" y2="218"/>
+          <line x1="52" y1="240" x2="72" y2="220"/>
+          <line x1="62" y1="244" x2="82" y2="224"/>
+        </g>
+      </g>
+      <text x="172" y="146" font-family="Inter, sans-serif" font-size="11" fill="currentColor">1</text>
+      <text x="28" y="218" font-family="Inter, sans-serif" font-size="11" fill="currentColor">2</text>
+      <text x="150" y="288" font-family="Cinzel, serif" font-size="13" letter-spacing="2" fill="currentColor">FIG. 1</text>
+    </symbol>
+  </svg>
 
   <!-- ============================ NAV ============================ -->
   <nav class="nav" id="nav">
@@ -541,6 +628,8 @@
 
   <!-- ============================ HERO ============================ -->
   <header class="hero" id="home">
+    <span class="deco bp deco-left deco-mid"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <span class="deco bp deco-right deco-top deco-flip"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <div class="wrap">
       <p class="hero-pre">Welcome to the Arena</p>
       <h1>Where Inventors &amp; <span class="accent">Investors</span> Meet</h1>
@@ -559,6 +648,7 @@
 
   <!-- ============== FOUNDERS: FOCAL POINT ============== -->
   <section class="section section--navy tri-watermark" id="founders">
+    <span class="deco bp silver deco-right deco-bottom" style="opacity:.045"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <div class="wrap">
       <div class="center founders-intro reveal">
         <span class="pre-label">Our Experts</span>
@@ -633,6 +723,12 @@
 
   <!-- ===================== PROGRAMS ===================== -->
   <section class="section section--navy tri-watermark" id="next-level">
+    <span class="deco bp deco-left deco-mid"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <span class="deco deco-photo deco-right deco-mid">
+      <img loading="lazy" alt="" aria-hidden="true"
+        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=500&q=70"
+        onerror="this.onerror=null;this.src='https://loremflickr.com/500/667/invention,workshop'" />
+    </span>
     <div class="wrap center reveal">
       <span class="pre-label">The Inventor Arena Programs</span>
       <h2 class="section-head">Choose Your Path to Success</h2>
@@ -645,7 +741,6 @@
         <article class="program-card reveal">
           <span class="card-badge">Start Your Journey</span>
           <h3 class="program-name">Beginner Program</h3>
-          <div class="program-price"><span class="cur">$</span>399</div>
           <p class="finance-note">+$100 if financing</p>
           <div class="feat-divider"></div>
           <ul class="feat-list">
@@ -664,7 +759,6 @@
           <span class="ribbon">★ BEST VALUE ★</span>
           <span class="card-badge">Most Popular</span>
           <h3 class="program-name">Perfect Pitch</h3>
-          <div class="program-price"><span class="cur">$</span>997</div>
           <p class="finance-note">+$100 if financing</p>
           <div class="feat-divider"></div>
           <ul class="feat-list">
@@ -715,6 +809,12 @@
 
   <!-- ===================== TESTIMONIALS ===================== -->
   <section class="section section--charcoal tri-watermark" id="testimonials">
+    <span class="deco deco-photo deco-left deco-mid">
+      <img loading="lazy" alt="" aria-hidden="true"
+        src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?auto=format&fit=crop&w=500&q=70"
+        onerror="this.onerror=null;this.src='https://loremflickr.com/500/667/lightbulb,idea'" />
+    </span>
+    <span class="deco bp deco-right deco-mid-r"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <div class="wrap center reveal">
       <h2 class="section-head">What Our Inventors Say</h2>
       <p class="section-sub">Real feedback from inventors who've transformed their ideas into funded products</p>
@@ -759,23 +859,23 @@
               <th>Features</th>
               <th>Beginner Program</th>
               <th>Perfect Pitch</th>
-              <th>Complete Program</th>
+              <th>Complete Program<span class="col-tag">Everything Included</span></th>
             </tr>
           </thead>
           <tbody>
             <tr><td>Hands-On Patent Search Mastery (save thousands on mistakes)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
             <tr><td>Product &amp; Market Evaluation Frameworks (validate your demand fast)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
             <tr><td>Select a great Patent Attorney or Patent Agent</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>In-Depth Program with Lessons Covering Every Critical Step</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Starting Your Business (legal/setup basics)</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Preparing for Your Investor Audience</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Mastering Your Presentation &amp; Speaking Confidence</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Preparing &amp; Delivering Your Pitch</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Developing Your Plan</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Preparing for Battle (objections/negotiation)</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Preparing for the Marketplace (launch/licensing)</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Mastering the Ask</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-            <tr><td>Achieving Success (valuation models, breakeven, 3-year proforma)</td><td><span class="dash">—</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>In-Depth Program with Lessons Covering Every Critical Step</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Starting Your Business (legal/setup basics)</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Preparing for Your Investor Audience</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Mastering Your Presentation &amp; Speaking Confidence</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Preparing &amp; Delivering Your Pitch</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Developing Your Plan</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Preparing for Battle (objections/negotiation)</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Preparing for the Marketplace (launch/licensing)</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Mastering the Ask</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+            <tr><td>Achieving Success (valuation models, breakeven, 3-year proforma)</td><td><span class="no">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -786,6 +886,12 @@
 
   <!-- ===================== FAQ ===================== -->
   <section class="section section--charcoal tri-watermark" id="faq">
+    <span class="deco bp deco-left deco-mid"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <span class="deco deco-photo deco-right deco-mid">
+      <img loading="lazy" alt="" aria-hidden="true"
+        src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=70"
+        onerror="this.onerror=null;this.src='https://loremflickr.com/500/667/blueprint,engineering'" />
+    </span>
     <div class="wrap center reveal">
       <span class="pre-label">Got Questions?</span>
       <h2 class="section-head">Frequently Asked Questions</h2>
@@ -828,6 +934,13 @@
 
   <!-- ===================== FINAL CTA ===================== -->
   <section class="section section--navy final-cta" id="contact">
+    <span class="cta-bgphoto">
+      <img loading="lazy" alt="" aria-hidden="true"
+        src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1500&q=70"
+        onerror="this.onerror=null;this.src='https://loremflickr.com/1500/700/invention,laboratory'" />
+    </span>
+    <span class="deco bp deco-left deco-bottom"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <span class="deco bp deco-right deco-top deco-flip"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <div class="wrap reveal">
       <h2>Ready to Enter the Arena?</h2>
       <p class="section-sub" style="margin:0 auto 38px;">Join hundreds of inventors who have transformed their ideas into funded, market-ready products with the guidance of The Inventors Arena team.</p>
