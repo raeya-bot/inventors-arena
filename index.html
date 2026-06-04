@@ -492,6 +492,18 @@
     .cta-bgphoto img { width: 100%; height: 100%; object-fit: cover; opacity: 0.12; filter: grayscale(0.25) contrast(1.1); }
     .cta-bgphoto::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,22,40,0.4), var(--navy) 75%); }
 
+    /* Subtle photos that blend into the section background (all sections except founders) */
+    .bg-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; --sec-bg: #0A1628; }
+    .bg-photo img { width: 100%; height: 100%; object-fit: cover; opacity: 0.16; filter: grayscale(0.25) contrast(1.05) brightness(0.85); }
+    .bg-photo.r img { object-position: right center; }
+    .bg-photo.l img { object-position: left center; }
+    .bg-photo::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, var(--sec-bg), transparent 28%, transparent 72%, var(--sec-bg)),
+        radial-gradient(ellipse at center, transparent 22%, var(--sec-bg) 90%);
+    }
+
     @media (max-width: 1100px) { .bp { display: none; } }
     @media (max-width: 1480px) { .deco-photo { display: none; } } /* avoid overlap on laptops */
 
@@ -500,10 +512,10 @@
     ============================================================ */
     .roadmap { background: linear-gradient(180deg, #0A1628, #0c1c34 50%, #0A1628); }
     .trail { position: relative; max-width: 900px; margin: 76px auto 0; }
-    .trail::before {
-      content: ""; position: absolute; left: 50%; top: 8px; bottom: 8px; width: 0;
-      border-left: 2px dashed rgba(var(--gold-rgb), 0.5); transform: translateX(-50%);
-    }
+    .trail-path { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: visible; }
+    .trail-path path { fill: none; stroke: rgba(var(--gold-rgb), 0.6); stroke-width: 2.5; stroke-dasharray: 1 10; stroke-linecap: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 6px rgba(var(--gold-rgb), 0.5)); }
+    .trail-list { position: relative; z-index: 1; }
+    .trail-list::before { content: ""; display: none; }
     .stop { position: relative; width: 50%; padding: 0 50px; margin-bottom: 44px; box-sizing: border-box; }
     .stop:nth-child(odd)  { left: 0; }
     .stop:nth-child(even) { left: 50%; }
@@ -530,7 +542,8 @@
     .trail-note { font-family: var(--f-head); font-style: italic; color: var(--gold); margin-bottom: 22px; }
 
     @media (max-width: 760px) {
-      .trail::before { left: 26px; }
+      .trail-path { display: none; }
+      .trail-list::before { display: block; position: absolute; left: 26px; top: 8px; bottom: 8px; width: 0; border-left: 2px dashed rgba(var(--gold-rgb), 0.5); }
       .stop, .stop:nth-child(odd), .stop:nth-child(even) { width: 100%; left: 0; padding: 0 0 0 72px; }
       .stop .stop-marker, .stop:nth-child(odd) .stop-marker, .stop:nth-child(even) .stop-marker { left: 0; right: auto; width: 46px; height: 46px; }
     }
@@ -668,6 +681,7 @@
 
   <!-- ============================ HERO ============================ -->
   <header class="hero" id="home">
+    <span class="bg-photo r"><img loading="lazy" alt="" aria-hidden="true" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=70" onerror="this.onerror=null;this.src='https://loremflickr.com/1600/900/innovation,technology'" /></span>
     <span class="deco bp deco-left deco-mid"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <span class="deco bp deco-right deco-top deco-flip"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <div class="wrap">
@@ -742,6 +756,7 @@
 
   <!-- ============== WATCH OUR STORY (redesigned split) ============== -->
   <section class="section section--charcoal tri-watermark" id="watch-story">
+    <span class="bg-photo l" style="--sec-bg:#111827"><img loading="lazy" alt="" aria-hidden="true" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=70" onerror="this.onerror=null;this.src='https://loremflickr.com/1600/900/invention,workshop'" /></span>
     <div class="wrap">
       <div class="story-grid">
         <div class="story-copy reveal">
@@ -763,13 +778,16 @@
 
   <!-- ===================== INVENTOR'S MAP / ROADMAP ===================== -->
   <section class="section roadmap tri-watermark" id="inventors-map">
+    <span class="bg-photo r"><img loading="lazy" alt="" aria-hidden="true" src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1600&q=70" onerror="this.onerror=null;this.src='https://loremflickr.com/1600/900/trail,mountains'" /></span>
     <div class="wrap center reveal">
       <span class="pre-label">The Inventor's Map</span>
       <h2 class="section-head">The Complete Program Journey</h2>
       <p class="section-sub">Every great invention follows a path. Follow the trail from the first spark to a funded, market-ready product, the same journey we guide you through, step by step, in the Complete Program.</p>
     </div>
     <div class="wrap">
-      <ol class="trail">
+      <div class="trail">
+        <svg class="trail-path" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 C 22 70 22 120 50 170 S 78 270 50 320 S 22 430 50 490 S 78 600 50 660 S 22 770 50 830 S 78 940 50 1000"/></svg>
+        <ol class="trail-list">
         <!-- I -->
         <li class="stop reveal">
           <span class="stop-marker">I</span>
@@ -840,7 +858,8 @@
             <p>Funded and market-ready, with ongoing support and access to the Inventors Arena community for the road ahead.</p>
           </div>
         </li>
-      </ol>
+        </ol>
+      </div>
 
       <div class="trail-end reveal">
         <p class="trail-note">This is the path of the Complete Program, from idea to funded.</p>
@@ -977,6 +996,7 @@
 
   <!-- ===================== COMPARE PROGRAMS ===================== -->
   <section class="section section--navy tri-watermark" id="compare">
+    <span class="bg-photo l"><img loading="lazy" alt="" aria-hidden="true" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=70" onerror="this.onerror=null;this.src='https://loremflickr.com/1600/900/engineering,gears'" /></span>
     <div class="wrap center reveal">
       <span class="pre-label">Side by Side</span>
       <h2 class="section-head">Compare Programs</h2>
