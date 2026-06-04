@@ -496,6 +496,46 @@
     @media (max-width: 1480px) { .deco-photo { display: none; } } /* avoid overlap on laptops */
 
     /* ============================================================
+       INVENTOR'S MAP / JOURNEY ROADMAP
+    ============================================================ */
+    .roadmap { background: linear-gradient(180deg, #0A1628, #0c1c34 50%, #0A1628); }
+    .trail { position: relative; max-width: 900px; margin: 76px auto 0; }
+    .trail::before {
+      content: ""; position: absolute; left: 50%; top: 8px; bottom: 8px; width: 0;
+      border-left: 2px dashed rgba(var(--gold-rgb), 0.5); transform: translateX(-50%);
+    }
+    .stop { position: relative; width: 50%; padding: 0 50px; margin-bottom: 44px; box-sizing: border-box; }
+    .stop:nth-child(odd)  { left: 0; }
+    .stop:nth-child(even) { left: 50%; }
+    .stop-marker {
+      position: absolute; top: 4px; width: 52px; height: 52px; border-radius: 50%; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--f-display); font-weight: 700; font-size: 0.95rem; color: #1a1206;
+      background: linear-gradient(135deg, var(--gold), var(--amber));
+      box-shadow: 0 0 0 6px var(--navy), 0 0 0 8px rgba(var(--gold-rgb), 0.4), 0 10px 26px rgba(0,0,0,0.55);
+    }
+    .stop:nth-child(odd)  .stop-marker { right: -26px; }
+    .stop:nth-child(even) .stop-marker { left: -26px; }
+    .stop-card {
+      background: var(--charcoal); border: 1px solid rgba(var(--gold-rgb), 0.2);
+      border-top: 3px solid var(--gold); border-radius: 14px; padding: 24px 26px;
+      box-shadow: 0 16px 44px rgba(0,0,0,0.42); transition: transform .4s var(--ease), border-color .4s var(--ease);
+    }
+    .stop-card:hover { transform: translateY(-5px); border-color: rgba(var(--gold-rgb), 0.55); }
+    .stop-icon { width: 38px; height: 38px; color: var(--gold); margin-bottom: 12px; }
+    .stop-era { display: block; font-family: var(--f-display); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .stop-card h3 { font-family: var(--f-display); color: var(--white); font-size: 1.32rem; margin-bottom: 8px; }
+    .stop-card p { color: var(--silver); font-size: 0.92rem; line-height: 1.62; }
+    .trail-end { text-align: center; margin-top: 14px; }
+    .trail-note { font-family: var(--f-head); font-style: italic; color: var(--gold); margin-bottom: 22px; }
+
+    @media (max-width: 760px) {
+      .trail::before { left: 26px; }
+      .stop, .stop:nth-child(odd), .stop:nth-child(even) { width: 100%; left: 0; padding: 0 0 0 72px; }
+      .stop .stop-marker, .stop:nth-child(odd) .stop-marker, .stop:nth-child(even) .stop-marker { left: 0; right: auto; width: 46px; height: 46px; }
+    }
+
+    /* ============================================================
        SCROLL REVEAL
     ============================================================ */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -715,6 +755,96 @@
             <iframe src="https://www.youtube.com/embed/aEVoUCcw-4o" title="The Inventors Arena story" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule" />
+
+  <!-- ===================== INVENTOR'S MAP / ROADMAP ===================== -->
+  <section class="section roadmap tri-watermark" id="inventors-map">
+    <div class="wrap center reveal">
+      <span class="pre-label">The Inventor's Map</span>
+      <h2 class="section-head">The Complete Program Journey</h2>
+      <p class="section-sub">Every great invention follows a path. Follow the trail from the first spark to a funded, market-ready product, the same journey we guide you through, step by step, in the Complete Program.</p>
+    </div>
+    <div class="wrap">
+      <ol class="trail">
+        <!-- I -->
+        <li class="stop reveal">
+          <span class="stop-marker">I</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30c4 6 10 8 18 8s14-2 18-8"/><path d="M6 30l4-2 4 2 4-2 4 2 4-2 4 2 4-2 4 2"/><path d="M24 28V8"/><path d="M24 10c6 1 11 4 13 8-5 1-9 1-13-1z"/><path d="M9 30c-1-4 0-7 2-9"/></svg>
+            <span class="stop-era">The Age of Sagas</span>
+            <h3>The Spark</h3>
+            <p>Master invention development, turning a raw idea into a clear, fundable concept worth setting sail for.</p>
+          </div>
+        </li>
+        <!-- II -->
+        <li class="stop reveal">
+          <span class="stop-marker">II</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10c-2 0-4 2-4 4v22c0-2 2-4 4-4h22V10z"/><path d="M34 10c2 0 4 2 4 4s-2 4-4 4"/><path d="M16 18h14M16 24h14M16 30h9"/></svg>
+            <span class="stop-era">The Age of Charters</span>
+            <h3>The Search</h3>
+            <p>A comprehensive patent search methodology, so you stake your claim and save thousands on costly mistakes.</p>
+          </div>
+        </li>
+        <!-- III -->
+        <li class="stop reveal">
+          <span class="stop-marker">III</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="3"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4"/></svg>
+            <span class="stop-era">The Age of the Forge</span>
+            <h3>The Proving Ground</h3>
+            <p>Market evaluation and validation techniques plus reality strategic planning tools to test demand fast.</p>
+          </div>
+        </li>
+        <!-- IV -->
+        <li class="stop reveal">
+          <span class="stop-marker">IV</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="7" width="30" height="34" rx="2"/><path d="M15 15h12M15 21h18M15 27h18M15 33h10"/><path d="M30 7v8h9"/></svg>
+            <span class="stop-era">The Age of Blueprints</span>
+            <h3>The Blueprint</h3>
+            <p>A complete business plan template and financial forecasts, the master plan behind every funded invention.</p>
+          </div>
+        </li>
+        <!-- V -->
+        <li class="stop reveal">
+          <span class="stop-marker">V</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c5 4 8 9 8 15a8 8 0 0 1-16 0c0-6 3-11 8-15z"/><path d="M20 33h8M21 38h6"/><path d="M24 14c2 2 3 4 3 7"/></svg>
+            <span class="stop-era">The Age of Invention</span>
+            <h3>The Armory</h3>
+            <p>A professional pitch deck starter kit and AI-generated business plan and pitch tools to arm you for battle.</p>
+          </div>
+        </li>
+        <!-- VI -->
+        <li class="stop reveal">
+          <span class="stop-marker">VI</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18l16-9 16 9-16 9z"/><path d="M12 21v10M20 25v9M28 25v9M36 21v10"/><path d="M8 38h32"/></svg>
+            <span class="stop-era">The Modern Arena</span>
+            <h3>The Arena</h3>
+            <p>Mastering investor presentations, the moment you step into the arena and deliver the pitch with confidence.</p>
+          </div>
+        </li>
+        <!-- VII -->
+        <li class="stop reveal">
+          <span class="stop-marker">VII</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5c6 4 9 11 9 19l-4 8H19l-4-8c0-8 3-15 9-19z"/><circle cx="24" cy="20" r="3"/><path d="M19 32l-5 6 7-2M29 32l5 6-7-2"/></svg>
+            <span class="stop-era">The Funded Future</span>
+            <h3>The Conquest</h3>
+            <p>Funded and market-ready, with ongoing support and access to the Inventors Arena community for the road ahead.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="trail-end reveal">
+        <p class="trail-note">This is the path of the Complete Program, from idea to funded.</p>
+        <a class="btn btn--gold" href="#contact">Book a Call to Begin Your Journey</a>
       </div>
     </div>
   </section>
