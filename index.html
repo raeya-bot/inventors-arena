@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Inventors Arena — Where Inventors &amp; Investors Meet</title>
-  <meta name="description" content="The Inventors Arena is the premier platform connecting inventors with investors. Expert guidance from a US Patent Agent and a seasoned business strategist — from raw idea to funded, market-ready product." />
+  <meta name="description" content="The Inventors Arena is the premier platform connecting inventors with investors. Expert guidance from a US Patent Agent and a seasoned business strategist, from raw idea to funded, market-ready product." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,28 +16,24 @@
        DESIGN TOKENS
     ============================================================ */
     :root {
-      /* Palette */
-      --navy:        #0A1628; /* primary background */
-      --charcoal:    #111827; /* cards / secondary sections */
-      --gold:        #C9A84C; /* primary accent */
-      --amber:       #E8B84B; /* hover / glow */
-      --white:       #F8F9FA; /* body text */
-      --silver:      #9CA3AF; /* secondary text */
-      --crimson:     #7B1D1D; /* subtle accent only */
-      --footer-bg:   #0A0F1A; /* slightly darker */
+      --navy:        #0A1628;
+      --charcoal:    #111827;
+      --gold:        #C9A84C;
+      --amber:       #E8B84B;
+      --white:       #F8F9FA;
+      --silver:      #9CA3AF;
+      --crimson:     #7B1D1D;
+      --footer-bg:   #0A0F1A;
 
-      /* Derived */
       --gold-rgb: 201, 168, 76;
       --amber-rgb: 232, 184, 75;
       --gold-grad: linear-gradient(135deg, #8a6f2d 0%, #C9A84C 28%, #F2DC9B 50%, #C9A84C 72%, #8a6f2d 100%);
       --gold-line: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.85), transparent);
 
-      /* Typography */
       --f-display: 'Cinzel', 'Times New Roman', serif;
       --f-head:    'Raleway', system-ui, sans-serif;
       --f-body:    'Inter', system-ui, sans-serif;
 
-      /* Layout */
       --maxw: 1200px;
       --radius: 14px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -62,6 +58,14 @@
     ul { list-style: none; }
 
     /* ============================================================
+       FIRE MOUSE TRAIL CANVAS
+    ============================================================ */
+    #fireCanvas {
+      position: fixed; inset: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 9998;
+    }
+
+    /* ============================================================
        SHARED UTILITIES
     ============================================================ */
     .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
@@ -70,7 +74,6 @@
     .section--navy     { background: var(--navy); }
     .section--charcoal { background: var(--charcoal); }
 
-    /* Triangle watermark (references logo triangle) */
     .tri-watermark::before {
       content: "";
       position: absolute; inset: 0;
@@ -82,7 +85,6 @@
     }
     .section > .wrap { position: relative; z-index: 1; }
 
-    /* Gold rule divider with soft glow */
     .gold-rule {
       height: 1px; border: 0; width: 100%;
       background: var(--gold-line);
@@ -90,7 +92,6 @@
       opacity: 0.9;
     }
 
-    /* Pre-label (all caps, Cinzel, gold, wide spacing) */
     .pre-label {
       font-family: var(--f-display);
       text-transform: uppercase;
@@ -107,15 +108,13 @@
     }
     .pre-label--left::before { display: none; }
 
-    .section-head { font-family: var(--f-display); color: var(--white); font-weight: 700; line-height: 1.15; letter-spacing: 0.01em; }
-    .section-head { font-size: clamp(2rem, 4.2vw, 3.2rem); }
+    .section-head { font-family: var(--f-display); color: var(--white); font-weight: 700; line-height: 1.15; letter-spacing: 0.01em; font-size: clamp(2rem, 4.2vw, 3.2rem); }
     .section-sub { font-family: var(--f-head); color: var(--silver); font-weight: 400; font-size: clamp(1rem, 1.6vw, 1.18rem); max-width: 720px; }
 
     .center { text-align: center; }
     .center .pre-label { justify-content: center; }
     .center .section-sub { margin-left: auto; margin-right: auto; }
 
-    /* Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       font-family: var(--f-head); font-weight: 700;
@@ -129,18 +128,9 @@
       color: #1a1206;
       box-shadow: 0 8px 26px rgba(var(--gold-rgb), 0.28);
     }
-    .btn--gold:hover {
-      transform: translateY(-2px) scale(1.035);
-      box-shadow: 0 12px 40px rgba(var(--amber-rgb), 0.55);
-    }
-    .btn--outline {
-      background: transparent; color: var(--gold);
-      border: 1.5px solid var(--gold);
-    }
-    .btn--outline:hover {
-      background: var(--gold); color: #1a1206;
-      box-shadow: 0 10px 30px rgba(var(--gold-rgb), 0.35);
-    }
+    .btn--gold:hover { transform: translateY(-2px) scale(1.035); box-shadow: 0 12px 40px rgba(var(--amber-rgb), 0.55); }
+    .btn--outline { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); }
+    .btn--outline:hover { background: var(--gold); color: #1a1206; box-shadow: 0 10px 30px rgba(var(--gold-rgb), 0.35); }
 
     /* ============================================================
        3D BADGE LOGO
@@ -203,7 +193,6 @@
     .hamburger { display: none; flex-direction: column; gap: 6px; padding: 8px; }
     .hamburger span { width: 28px; height: 2px; background: var(--gold); border-radius: 2px; transition: transform .35s var(--ease), opacity .25s var(--ease); }
 
-    /* Mobile overlay nav */
     .mobile-nav {
       position: fixed; inset: 0; z-index: 1100;
       background: linear-gradient(160deg, var(--navy), #060d18);
@@ -212,10 +201,7 @@
       transition: opacity .4s var(--ease), transform .4s var(--ease), visibility .4s;
     }
     .mobile-nav.open { opacity: 1; visibility: visible; transform: scale(1); }
-    .mobile-nav a {
-      font-family: var(--f-display); font-size: 1.5rem; color: var(--white);
-      letter-spacing: 0.06em; transition: color .25s;
-    }
+    .mobile-nav a { font-family: var(--f-display); font-size: 1.5rem; color: var(--white); letter-spacing: 0.06em; transition: color .25s; }
     .mobile-nav a:hover { color: var(--gold); }
     .mobile-nav .btn { margin-top: 10px; }
     .mobile-close { position: absolute; top: 24px; right: 26px; font-size: 2.2rem; color: var(--gold); line-height: 1; }
@@ -224,11 +210,10 @@
        HERO
     ============================================================ */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; position: relative; padding: 120px 0 80px;
+      min-height: 92vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; padding: 150px 0 90px;
       background: var(--navy);
     }
-    /* ambient torch glow rising from bottom-center */
     .hero::after {
       content: ""; position: absolute; left: 50%; bottom: -10%; transform: translateX(-50%);
       width: 1100px; height: 700px; pointer-events: none; z-index: 0;
@@ -236,104 +221,98 @@
       filter: blur(8px);
     }
     .hero .wrap { position: relative; z-index: 2; }
-    .hero-pre {
-      font-family: var(--f-display); text-transform: uppercase; letter-spacing: 0.4em;
-      color: var(--gold); font-weight: 600; font-size: 0.9rem; margin-bottom: 28px;
-    }
+    .hero-pre { font-family: var(--f-display); text-transform: uppercase; letter-spacing: 0.4em; color: var(--gold); font-weight: 600; font-size: 0.9rem; margin-bottom: 28px; }
     .hero h1 {
       font-family: var(--f-display); font-weight: 800; color: var(--white);
       font-size: clamp(2.6rem, 7vw, 5.4rem); line-height: 1.08; letter-spacing: 0.01em;
       margin-bottom: 26px; text-shadow: 0 4px 40px rgba(0,0,0,0.5);
     }
-    .hero h1 .accent {
-      background: var(--gold-grad); -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-sub {
-      font-family: var(--f-head); color: var(--silver); font-weight: 400;
-      font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 680px; margin: 0 auto 44px;
-    }
-    .scroll-ind {
-      position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
-      color: var(--gold); z-index: 2;
-    }
+    .hero h1 .accent { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-family: var(--f-head); color: var(--silver); font-weight: 400; font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 680px; margin: 0 auto 40px; }
+    .hero-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .scroll-ind { position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); color: var(--gold); z-index: 2; }
     @keyframes bounceDown { 0%,100%{ transform: translate(-50%,0);} 50%{ transform: translate(-50%, 12px);} }
     .scroll-ind { animation: bounceDown 2.2s ease-in-out infinite; }
     .scroll-ind svg { width: 30px; height: 30px; opacity: 0.85; }
 
     /* ============================================================
-       VIDEO WRAPPERS
+       FOUNDERS  (FOCAL POINT — editorial spotlight rows)
     ============================================================ */
-    .video-shell { max-width: 860px; margin: 48px auto 0; position: relative; }
-    .video-glow::before {
-      content: ""; position: absolute; inset: -8%;
-      background: radial-gradient(ellipse at center, rgba(var(--amber-rgb), 0.15), transparent 68%);
-      filter: blur(20px); z-index: 0; pointer-events: none;
+    .founders-intro { max-width: 760px; margin: 0 auto; }
+
+    .founder {
+      display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center;
+      margin-top: 86px;
     }
+    .founder:first-of-type { margin-top: 64px; }
+    .founder.reverse { grid-template-columns: 1.15fr 0.85fr; }
+    .founder.reverse .founder-media { order: 2; }
+
+    .founder-media { position: relative; display: flex; justify-content: center; }
+    .founder-media::after {
+      content: ""; position: absolute; inset: -10% -6%;
+      background: radial-gradient(ellipse at center, rgba(var(--amber-rgb),0.22), transparent 66%);
+      z-index: 0; filter: blur(6px);
+    }
+    .photo-ring {
+      position: relative; z-index: 1; width: 320px; max-width: 78vw; aspect-ratio: 1;
+      border-radius: 18px; overflow: hidden;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 0 8px rgba(var(--gold-rgb),0.10), 0 24px 60px rgba(0,0,0,0.55);
+    }
+    /* Light editorial grade on the REAL photo — does not alter likeness */
+    .photo-ring img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: contrast(1.06) saturate(0.92) brightness(1.02);
+    }
+    .photo-ring::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(201,168,76,0.10), transparent 40%, rgba(10,22,40,0.34));
+      mix-blend-mode: soft-light;
+    }
+    /* Monogram fallback (Edwin until real photo supplied) */
+    .photo-ring.mono {
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 50% 35%, #17233b, #0b1422 70%);
+    }
+    .photo-ring.mono span {
+      font-family: var(--f-display); font-weight: 700; font-size: 5.2rem;
+      background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .founder-num { font-family: var(--f-display); font-size: 0.8rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .founder-name { font-family: var(--f-display); font-weight: 700; color: var(--white); font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.1; }
+    .founder-title { font-family: var(--f-head); color: var(--gold); font-weight: 600; letter-spacing: 0.03em; font-size: 1.05rem; margin: 8px 0 20px; }
+    .founder-bio { font-family: var(--f-body); color: var(--silver); font-size: 1rem; line-height: 1.8; }
+    .badge-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
+    .pill {
+      font-family: var(--f-head); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
+      color: var(--gold); border: 1px solid rgba(var(--gold-rgb), 0.6);
+      padding: 7px 16px; border-radius: 50px; background: rgba(var(--gold-rgb), 0.06);
+    }
+    .founders-cta { text-align: center; margin-top: 80px; }
+    .founders-cta .btn { margin: 0 8px 12px; }
+
+    /* ============================================================
+       WATCH OUR STORY  (redesigned: split layout)
+    ============================================================ */
+    .story-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; margin-top: 24px; }
+    .story-copy .section-head { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+    .story-copy p { color: var(--silver); font-family: var(--f-head); margin: 20px 0 30px; font-size: 1.08rem; }
+
     .video-frame {
       position: relative; z-index: 1; border-radius: 12px; overflow: hidden;
       border: 2px solid var(--gold);
       box-shadow: 0 18px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(var(--gold-rgb),0.2);
       aspect-ratio: 16 / 9; background: #000;
     }
-    .video-frame--3 { border-width: 3px; }
-    .video-frame iframe, .video-frame video { width: 100%; height: 100%; display: block; border: 0; }
-
-    /* Custom play overlay for MP4 */
-    .play-overlay {
-      position: absolute; inset: 0; z-index: 3; cursor: pointer;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
-      background: radial-gradient(ellipse at center, rgba(10,22,40,0.35), rgba(10,22,40,0.7));
-      transition: opacity .4s var(--ease);
+    .video-frame iframe { width: 100%; height: 100%; display: block; border: 0; }
+    .video-glow { position: relative; }
+    .video-glow::before {
+      content: ""; position: absolute; inset: -8%;
+      background: radial-gradient(ellipse at center, rgba(var(--amber-rgb), 0.15), transparent 68%);
+      filter: blur(20px); z-index: 0; pointer-events: none;
     }
-    .play-overlay.hidden { opacity: 0; visibility: hidden; }
-    .play-circle {
-      width: 92px; height: 92px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--amber));
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 8px rgba(var(--gold-rgb), 0.18), 0 12px 36px rgba(0,0,0,0.5);
-      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-    }
-    .play-overlay:hover .play-circle { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(var(--amber-rgb), 0.22), 0 16px 44px rgba(0,0,0,0.55); }
-    .play-circle svg { width: 34px; height: 34px; margin-left: 5px; fill: #1a1206; }
-    .play-label { font-family: var(--f-head); color: var(--white); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.84rem; font-weight: 600; }
-
-    /* ============================================================
-       TEAM / EXPERTS
-    ============================================================ */
-    .video-sublabel { font-family: var(--f-head); font-style: italic; color: var(--gold); font-size: 1.15rem; margin-bottom: 6px; }
-
-    .expert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 70px; }
-    .expert-card {
-      background: var(--charcoal); border-radius: var(--radius);
-      border-top: 3px solid var(--gold);
-      padding: 44px 38px 38px; position: relative;
-      box-shadow: 0 14px 44px rgba(0,0,0,0.35);
-      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
-      display: flex; flex-direction: column;
-    }
-    .expert-card:hover { transform: translateY(-8px); box-shadow: 0 26px 60px rgba(0,0,0,0.5); }
-    .expert-photo-wrap { position: relative; width: 168px; height: 168px; margin: 0 auto 26px; }
-    .expert-photo-wrap::after {
-      content: ""; position: absolute; inset: -14px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(var(--amber-rgb),0.22), transparent 70%);
-      z-index: 0;
-    }
-    .expert-photo {
-      position: relative; z-index: 1; width: 168px; height: 168px; border-radius: 50%;
-      object-fit: cover; border: 3px solid var(--gold);
-      box-shadow: 0 0 0 6px rgba(var(--gold-rgb), 0.12), 0 12px 30px rgba(0,0,0,0.5);
-    }
-    .expert-name { font-family: var(--f-display); font-weight: 700; color: var(--white); font-size: 1.7rem; text-align: center; }
-    .expert-title { font-family: var(--f-head); color: var(--gold); font-weight: 600; text-align: center; letter-spacing: 0.03em; margin: 6px 0 22px; }
-    .expert-bio { font-family: var(--f-body); color: var(--silver); font-size: 0.98rem; line-height: 1.75; }
-    .badge-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0 30px; }
-    .pill {
-      font-family: var(--f-head); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
-      color: var(--gold); border: 1px solid rgba(var(--gold-rgb), 0.6);
-      padding: 7px 16px; border-radius: 50px; background: rgba(var(--gold-rgb), 0.06);
-    }
-    .expert-card .btn { margin-top: auto; align-self: center; }
 
     /* ============================================================
        PROGRAMS
@@ -348,21 +327,17 @@
     .program-card:hover { transform: translateY(-8px); border-color: rgba(var(--gold-rgb), 0.5); box-shadow: 0 26px 60px rgba(0,0,0,0.5); }
     .program-card.featured { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 20px 60px rgba(var(--gold-rgb), 0.18); }
 
-    .card-badge {
-      font-family: var(--f-display); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 18px;
-    }
+    .card-badge { font-family: var(--f-display); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
     .program-name { font-family: var(--f-display); font-weight: 700; color: var(--white); font-size: 1.7rem; margin-bottom: 14px; }
     .program-price { font-family: var(--f-display); color: var(--white); font-size: 2.6rem; font-weight: 700; line-height: 1; }
     .program-price .cur { font-size: 1.3rem; vertical-align: super; color: var(--gold); }
     .finance-note { font-family: var(--f-body); color: var(--silver); font-size: 0.85rem; margin-top: 6px; margin-bottom: 24px; }
-    .program-card .feat-divider { height: 1px; background: rgba(var(--gold-rgb), 0.18); margin: 0 0 22px; }
+    .feat-divider { height: 1px; background: rgba(var(--gold-rgb), 0.18); margin: 0 0 22px; }
     .feat-list { display: flex; flex-direction: column; gap: 13px; margin-bottom: 30px; flex: 1; }
     .feat-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.94rem; color: var(--white); line-height: 1.5; }
     .feat-list li svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; fill: var(--gold); }
     .program-card .btn { width: 100%; }
 
-    /* gold ribbon for best value */
     .ribbon {
       position: absolute; top: 18px; right: -8px; z-index: 3;
       background: linear-gradient(135deg, var(--gold), var(--amber));
@@ -372,7 +347,6 @@
     }
     .ribbon::after { content: ""; position: absolute; right: 0; bottom: -7px; border-width: 0 8px 7px 0; border-style: solid; border-color: transparent #8a6f2d transparent transparent; }
 
-    /* Floating chat callout */
     .chat-callout {
       position: fixed; right: 22px; bottom: 22px; z-index: 900;
       display: inline-flex; align-items: center; gap: 10px;
@@ -403,15 +377,11 @@
     .testi-name { font-family: var(--f-display); color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
 
     .carousel-arrows { display: flex; justify-content: center; gap: 14px; margin-top: 26px; }
-    .carousel-arrows button, .carousel-dots button { transition: all .25s var(--ease); }
-    .c-arrow {
-      width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(var(--gold-rgb),0.5);
-      color: var(--gold); display: inline-flex; align-items: center; justify-content: center;
-    }
+    .c-arrow { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(var(--gold-rgb),0.5); color: var(--gold); display: inline-flex; align-items: center; justify-content: center; transition: all .25s var(--ease); }
     .c-arrow:hover { background: var(--gold); color: #1a1206; }
     .c-arrow svg { width: 18px; height: 18px; }
     .carousel-dots { display: flex; gap: 10px; justify-content: center; margin-top: 18px; }
-    .carousel-dots button { width: 10px; height: 10px; border-radius: 50%; background: rgba(var(--gold-rgb),0.3); }
+    .carousel-dots button { width: 10px; height: 10px; border-radius: 50%; background: rgba(var(--gold-rgb),0.3); transition: all .25s var(--ease); }
     .carousel-dots button.active { background: var(--gold); width: 26px; border-radius: 6px; }
 
     /* ============================================================
@@ -438,17 +408,10 @@
        FAQ ACCORDION
     ============================================================ */
     .faq-list { max-width: 820px; margin: 52px auto 0; display: flex; flex-direction: column; gap: 14px; }
-    .faq-item {
-      background: var(--charcoal); border: 1px solid rgba(255,255,255,0.06);
-      border-left: 3px solid transparent; border-radius: 10px; overflow: hidden;
-      transition: border-color .35s var(--ease), background .35s var(--ease);
-    }
+    .faq-item { background: var(--charcoal); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid transparent; border-radius: 10px; overflow: hidden; transition: border-color .35s var(--ease), background .35s var(--ease); }
     .faq-item.open { border-left-color: var(--gold); background: #141d30; }
-    .faq-q {
-      width: 100%; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 18px;
-      padding: 22px 26px; font-family: var(--f-head); font-weight: 600; font-size: 1.06rem; color: var(--white);
-    }
-    .faq-icon { flex-shrink: 0; width: 24px; height: 24px; position: relative; transition: transform .35s var(--ease); }
+    .faq-q { width: 100%; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px 26px; font-family: var(--f-head); font-weight: 600; font-size: 1.06rem; color: var(--white); }
+    .faq-icon { flex-shrink: 0; width: 24px; height: 24px; position: relative; }
     .faq-icon::before, .faq-icon::after { content: ""; position: absolute; background: var(--gold); border-radius: 2px; }
     .faq-icon::before { top: 11px; left: 3px; width: 18px; height: 2px; }
     .faq-icon::after  { left: 11px; top: 3px; width: 2px; height: 18px; transition: transform .35s var(--ease); }
@@ -476,10 +439,8 @@
     .footer-tag { font-family: var(--f-head); color: var(--silver); font-size: 0.96rem; line-height: 1.7; margin-top: 20px; max-width: 340px; }
     .footer h4 { font-family: var(--f-display); color: var(--gold); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; }
     .footer-links li { margin-bottom: 12px; }
-    .footer-links a { font-family: var(--f-body); color: var(--white); font-size: 0.94rem; transition: color .25s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-contact a { color: var(--white); font-size: 0.94rem; transition: color .25s; }
-    .footer-contact a:hover { color: var(--gold); }
+    .footer-links a, .footer-contact a { font-family: var(--f-body); color: var(--white); font-size: 0.94rem; transition: color .25s; }
+    .footer-links a:hover, .footer-contact a:hover { color: var(--gold); }
     .footer-bottom { margin-top: 50px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; }
     .footer-bottom p { color: var(--silver); font-size: 0.85rem; margin-bottom: 8px; }
     .footer-fine { color: #6b7280; font-size: 0.78rem; }
@@ -493,6 +454,7 @@
       .reveal { opacity: 1; transform: none; }
       *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
       html { scroll-behavior: auto; }
+      #fireCanvas { display: none; }
     }
 
     /* ============================================================
@@ -501,7 +463,10 @@
     @media (max-width: 960px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
-      .expert-grid { grid-template-columns: 1fr; }
+      .founder, .founder.reverse { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .founder.reverse .founder-media { order: 0; }
+      .badge-pills { justify-content: center; }
+      .story-grid { grid-template-columns: 1fr; gap: 32px; }
       .programs-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
       .footer-grid { grid-template-columns: 1fr; gap: 36px; }
       .section { padding: 80px 0; }
@@ -511,11 +476,13 @@
       .chat-callout { right: 14px; bottom: 14px; padding: 12px 18px; font-size: 0.82rem; }
       .testi-card { padding: 36px 24px; }
       .testi-text { font-size: 1.1rem; }
-      .expert-card { padding: 36px 24px 30px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Fire mouse trail -->
+  <canvas id="fireCanvas"></canvas>
 
   <!-- ============================ NAV ============================ -->
   <nav class="nav" id="nav">
@@ -562,7 +529,6 @@
     </div>
   </nav>
 
-  <!-- Mobile overlay -->
   <div class="mobile-nav" id="mobileNav">
     <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
     <a href="#home">Home</a>
@@ -578,92 +544,95 @@
     <div class="wrap">
       <p class="hero-pre">Welcome to the Arena</p>
       <h1>Where Inventors &amp; <span class="accent">Investors</span> Meet</h1>
-      <p class="hero-sub">From raw idea to funded invention — Use the button below to Chat with our experienced team</p>
-      <a class="btn btn--gold" href="#contact">Chat with an Inventor</a>
+      <p class="hero-sub">From raw idea to funded invention. Meet the two experts who get inventors funded, then chat with our team to start your journey.</p>
+      <div class="hero-cta-row">
+        <a class="btn btn--gold" href="#contact">Chat with an Inventor</a>
+        <a class="btn btn--outline" href="#founders">Meet Ed &amp; Scott</a>
+      </div>
     </div>
-    <a href="#watch-story" class="scroll-ind" aria-label="Scroll down">
+    <a href="#founders" class="scroll-ind" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </a>
   </header>
 
   <hr class="gold-rule" />
 
-  <!-- ===================== SECTION 2: WATCH OUR STORY ===================== -->
-  <section class="section section--charcoal tri-watermark" id="watch-story">
-    <div class="wrap center reveal">
-      <span class="pre-label">Watch Our Story</span>
-      <h2 class="section-head">Discover how we've helped hundreds of inventors turn their ideas into funded, market-ready products.</h2>
-      <div class="video-shell video-glow">
-        <div class="video-frame">
-          <iframe src="https://www.youtube.com/embed/aEVoUCcw-4o" title="The Inventors Arena story" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="gold-rule" />
-
-  <!-- ===================== SECTION 3: OUR EXPERTS / MEET THE TEAM ===================== -->
-  <section class="section section--navy tri-watermark" id="our-experts">
-    <div class="wrap center reveal">
-      <span class="pre-label">Our Experts</span>
-      <h2 class="section-head">Meet the Team</h2>
-
-      <!-- Sub A: video -->
-      <p class="video-sublabel" style="margin-top:34px;">A Message From Ed &amp; Scott</p>
-      <div class="video-shell video-glow">
-        <div class="video-frame video-frame--3">
-          <video id="edScottVideo" preload="none" controls playsinline poster="https://d2xsxph8kpxj0f.cloudfront.net/310519663179695645/LqFNLLr2N3jd2qnpQcq32S/pasted_file_AVslAG_image_73dca88d.png">
-            <source data-src="https://d2xsxph8kpxj0f.cloudfront.net/310519663179695645/LqFNLLr2N3jd2qnpQcq32S/ed-scott-intro_55890c46.mp4" type="video/mp4" />
-          </video>
-          <button class="play-overlay" id="edScottOverlay" aria-label="Play video">
-            <span class="play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="play-label">Click to Watch</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sub B: expert cards -->
+  <!-- ============== FOUNDERS — FOCAL POINT ============== -->
+  <section class="section section--navy tri-watermark" id="founders">
     <div class="wrap">
-      <div class="expert-grid">
-        <!-- Edwin -->
-        <article class="expert-card reveal">
-          <div class="expert-photo-wrap">
-            <img class="expert-photo" loading="lazy" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663179695645/LqFNLLr2N3jd2qnpQcq32S/pasted_file_AVslAG_image_73dca88d.png" alt="Edwin Wold" width="168" height="168" />
-          </div>
-          <h3 class="expert-name">Edwin Wold</h3>
-          <p class="expert-title">Co-Founder &amp; Invention Strategist</p>
-          <p class="expert-bio">Edwin Wold is a seasoned US Patent Agent. He enjoys helping independent inventors and small companies develop their invention ideas to fruition. Throughout his career, Edwin noted how inventors often struggle with the development of their products and obtaining the investment funding needed to help their products to market. Edwin teamed up with Scott to bring both the patent and business sides together in a holistic program, teaching inventors the skills needed for their success.</p>
-          <div class="badge-pills">
-            <span class="pill">US Patent Agent</span>
-          </div>
-          <a class="btn btn--outline" href="#contact">Book a Call</a>
-        </article>
+      <div class="center founders-intro reveal">
+        <span class="pre-label">Our Experts</span>
+        <h2 class="section-head">Meet Edwin &amp; Scott</h2>
+        <p class="section-sub" style="margin-top:18px;">Two seasoned experts who bring the patent, engineering, and business sides together, guiding independent inventors from a raw idea to a funded, market-ready product.</p>
+      </div>
 
-        <!-- Scott -->
-        <article class="expert-card reveal">
-          <div class="expert-photo-wrap">
-            <img class="expert-photo" loading="lazy" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663179695645/LqFNLLr2N3jd2qnpQcq32S/pasted_file_RliOQq_image_7fc97980.png" alt="Scott Romeo" width="168" height="168" />
+      <!-- Edwin -->
+      <article class="founder reveal">
+        <div class="founder-media">
+          <!-- TODO: replace monogram with Edwin's real photo when supplied: <div class="photo-ring"><img src="edwin.jpg" alt="Edwin Wold"></div> -->
+          <div class="photo-ring mono" role="img" aria-label="Edwin Wold"><span>EW</span></div>
+        </div>
+        <div class="founder-body">
+          <p class="founder-num">Co-Founder 01</p>
+          <h3 class="founder-name">Edwin Wold</h3>
+          <p class="founder-title">Co-Founder &amp; Invention Strategist</p>
+          <p class="founder-bio">Edwin Wold is a seasoned US Patent Agent. He enjoys helping independent inventors and small companies develop their invention ideas to fruition. Throughout his career, Edwin noted how inventors often struggle with the development of their products and obtaining the investment funding needed to help their products to market. Edwin teamed up with Scott to bring both the patent and business sides together in a holistic program, teaching inventors the skills needed for their success.</p>
+          <div class="badge-pills"><span class="pill">US Patent Agent</span></div>
+        </div>
+      </article>
+
+      <!-- Scott -->
+      <article class="founder reverse reveal">
+        <div class="founder-media">
+          <div class="photo-ring">
+            <img loading="lazy" src="https://d2xsxph8kpxj0f.cloudfront.net/310519663179695645/LqFNLLr2N3jd2qnpQcq32S/pasted_file_RliOQq_image_7fc97980.png" alt="Scott Romeo" width="320" height="320" />
           </div>
-          <h3 class="expert-name">Scott Romeo</h3>
-          <p class="expert-title">Co-Founder &amp; Investor Relations</p>
-          <p class="expert-bio">Scott Romeo is a business and management consultant with 32 years' experience in nearly 90 industries. His strength is in developing the idea of an inventor into a viable business offering. He writes strategic business plans and conducts due diligence on business plans for investors. He is a Certified Business Negotiator and holds a certificate in Mergers and Acquisitions from Wharton. He provides the business side to complement Edwin, providing the patent and engineering know-how.</p>
+        </div>
+        <div class="founder-body">
+          <p class="founder-num">Co-Founder 02</p>
+          <h3 class="founder-name">Scott Romeo</h3>
+          <p class="founder-title">Co-Founder &amp; Investor Relations</p>
+          <p class="founder-bio">Scott Romeo is a business and management consultant with 32 years' experience in nearly 90 industries. His strength is in developing the idea of an inventor into a viable business offering. He writes strategic business plans and conducts due diligence on business plans for investors. He is a Certified Business Negotiator and holds a certificate in Mergers and Acquisitions from Wharton. He provides the business side to complement Edwin, providing the patent and engineering know-how.</p>
           <div class="badge-pills">
             <span class="pill">Certified Business Negotiator</span>
             <span class="pill">Wharton M&amp;A Certificate</span>
             <span class="pill">32 Years Experience</span>
           </div>
-          <a class="btn btn--outline" href="#contact">Book a Call</a>
-        </article>
+        </div>
+      </article>
+
+      <div class="founders-cta reveal">
+        <a class="btn btn--gold" href="#contact">Chat with an Inventor</a>
+        <a class="btn btn--outline" href="#contact">Book a Call</a>
       </div>
     </div>
   </section>
 
   <hr class="gold-rule" />
 
-  <!-- ===================== SECTION 4: PROGRAMS ===================== -->
-  <section class="section section--charcoal tri-watermark" id="next-level">
+  <!-- ============== WATCH OUR STORY (redesigned split) ============== -->
+  <section class="section section--charcoal tri-watermark" id="watch-story">
+    <div class="wrap">
+      <div class="story-grid">
+        <div class="story-copy reveal">
+          <span class="pre-label pre-label--left">Watch Our Story</span>
+          <h2 class="section-head">Discover how we've helped hundreds of inventors turn their ideas into funded, market-ready products.</h2>
+          <p>See the program in action and hear why inventors trust The Inventors Arena to take them from concept to funded.</p>
+          <a class="btn btn--outline" href="#contact">Chat with an Inventor</a>
+        </div>
+        <div class="video-glow reveal">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/aEVoUCcw-4o" title="The Inventors Arena story" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule" />
+
+  <!-- ===================== PROGRAMS ===================== -->
+  <section class="section section--navy tri-watermark" id="next-level">
     <div class="wrap center reveal">
       <span class="pre-label">The Inventor Arena Programs</span>
       <h2 class="section-head">Choose Your Path to Success</h2>
@@ -710,7 +679,7 @@
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Preparing for the Marketplace (launch/licensing)</li>
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Mastering the Ask</li>
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Achieving Success</li>
-            <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Valuation Models - Breakeven - 3-Year Proforma</li>
+            <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Valuation Models, Breakeven, 3-Year Proforma</li>
           </ul>
           <a class="btn btn--gold" href="https://buy.stripe.com/3cI3cv6znax99wlfjXgbm0o" target="_blank" rel="noopener">Sign Up Today</a>
         </article>
@@ -724,7 +693,7 @@
           <div class="feat-divider"></div>
           <ul class="feat-list">
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Includes Everything from Other Plans &amp; Everything Here</li>
-            <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Master Invention Development – From Idea to Funded</li>
+            <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Master Invention Development: From Idea to Funded</li>
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Reality Strategic Planning Tools</li>
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Complete Business Plan Template &amp; Financial Forecasts</li>
             <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Professional Pitch Deck Starter Kit</li>
@@ -744,8 +713,8 @@
 
   <hr class="gold-rule" />
 
-  <!-- ===================== SECTION 5: TESTIMONIALS ===================== -->
-  <section class="section section--navy tri-watermark" id="testimonials">
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="section section--charcoal tri-watermark" id="testimonials">
     <div class="wrap center reveal">
       <h2 class="section-head">What Our Inventors Say</h2>
       <p class="section-sub">Real feedback from inventors who've transformed their ideas into funded products</p>
@@ -776,8 +745,8 @@
 
   <hr class="gold-rule" />
 
-  <!-- ===================== SECTION 6: COMPARE PROGRAMS ===================== -->
-  <section class="section section--charcoal tri-watermark" id="compare">
+  <!-- ===================== COMPARE PROGRAMS ===================== -->
+  <section class="section section--navy tri-watermark" id="compare">
     <div class="wrap center reveal">
       <span class="pre-label">Side by Side</span>
       <h2 class="section-head">Compare Programs</h2>
@@ -815,8 +784,8 @@
 
   <hr class="gold-rule" />
 
-  <!-- ===================== SECTION 7: FAQ ===================== -->
-  <section class="section section--navy tri-watermark" id="faq">
+  <!-- ===================== FAQ ===================== -->
+  <section class="section section--charcoal tri-watermark" id="faq">
     <div class="wrap center reveal">
       <span class="pre-label">Got Questions?</span>
       <h2 class="section-head">Frequently Asked Questions</h2>
@@ -825,15 +794,15 @@
       <div class="faq-list" id="faqList">
         <div class="faq-item reveal">
           <button class="faq-q">What is The Inventors Arena?<span class="faq-icon"></span></button>
-          <div class="faq-a"><div class="faq-a-inner">The Inventors Arena is the premier platform connecting inventors with investors. Led by a seasoned US Patent Agent and a veteran business strategist, we guide independent inventors and small companies through every step — from raw idea to funded, market-ready product — combining the patent, engineering, and business sides into one holistic program.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">The Inventors Arena is the premier platform connecting inventors with investors. Led by a seasoned US Patent Agent and a veteran business strategist, we guide independent inventors and small companies through every step, from raw idea to funded, market-ready product, combining the patent, engineering, and business sides into one holistic program.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-q">Who are the programs designed for?<span class="faq-icon"></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Our programs are designed for independent inventors, entrepreneurs, and small companies at any stage of their journey — whether you're just starting to develop an idea or you're preparing to pitch investors and bring your product to market.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Our programs are designed for independent inventors, entrepreneurs, and small companies at any stage of their journey, whether you're just starting to develop an idea or you're preparing to pitch investors and bring your product to market.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-q">What is the difference between the three programs?<span class="faq-icon"></span></button>
-          <div class="faq-a"><div class="faq-a-inner">The Beginner Program focuses on the fundamentals — patent search mastery, product and market evaluation, and validating demand. Perfect Pitch is our in-depth program covering every critical step, from starting your business through preparing and delivering your investor pitch. The Complete Program includes everything from the other plans plus complete business plan templates, a professional pitch deck starter kit, 14+ lessons, financial modeling, and ongoing access to the Inventors Arena community.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">The Beginner Program focuses on the fundamentals: patent search mastery, product and market evaluation, and validating demand. Perfect Pitch is our in-depth program covering every critical step, from starting your business through preparing and delivering your investor pitch. The Complete Program includes everything from the other plans plus complete business plan templates, a professional pitch deck starter kit, 14+ lessons, financial modeling, and ongoing access to the Inventors Arena community.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-q">Is financing available?<span class="faq-icon"></span></button>
@@ -845,11 +814,11 @@
         </div>
         <div class="faq-item reveal">
           <button class="faq-q">How do I get started?<span class="faq-icon"></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Getting started is easy — choose the program that fits your stage and enroll directly, or book a call with our team and we'll help you find the right path for your invention.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Getting started is easy. Choose the program that fits your stage and enroll directly, or book a call with our team and we'll help you find the right path for your invention.</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-q">Can I chat with an inventor or advisor?<span class="faq-icon"></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Absolutely. You can chat with our experienced team at any time using the "Chat with an Inventor" button — we're happy to answer your questions and help you take the next step.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Absolutely. You can chat with our experienced team at any time using the "Chat with an Inventor" button. We're happy to answer your questions and help you take the next step.</div></div>
         </div>
       </div>
     </div>
@@ -857,7 +826,7 @@
 
   <hr class="gold-rule" />
 
-  <!-- ===================== SECTION 8: FINAL CTA ===================== -->
+  <!-- ===================== FINAL CTA ===================== -->
   <section class="section section--navy final-cta" id="contact">
     <div class="wrap reveal">
       <h2>Ready to Enter the Arena?</h2>
@@ -905,7 +874,6 @@
     </div>
   </footer>
 
-  <!-- Floating chat callout -->
   <a class="chat-callout" href="#contact">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
     Questions? Chat with an Inventor Now
@@ -927,17 +895,6 @@
     mobileClose.addEventListener('click', closeMenu);
     mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-    /* ---- Ed & Scott video custom play overlay (lazy source) ---- */
-    const video = document.getElementById('edScottVideo');
-    const overlay = document.getElementById('edScottOverlay');
-    overlay.addEventListener('click', () => {
-      const src = video.querySelector('source');
-      if (src && !src.src) { src.src = src.dataset.src; video.load(); }
-      overlay.classList.add('hidden');
-      video.play();
-    });
-    video.addEventListener('pause', () => { if (video.currentTime === 0) overlay.classList.remove('hidden'); });
-
     /* ---- Testimonials carousel ---- */
     (function(){
       const cards = Array.from(document.querySelectorAll('#carousel .testi-card'));
@@ -956,8 +913,7 @@
         i = (n + cards.length) % cards.length;
         cards[i].classList.add('active'); dots[i].classList.add('active');
       }
-      function next(){ go(i+1); }
-      function prev(){ go(i-1); }
+      function next(){ go(i+1); } function prev(){ go(i-1); }
       function start(){ timer = setInterval(next, 5000); }
       function reset(){ clearInterval(timer); start(); }
       document.getElementById('cNext').addEventListener('click', () => { next(); reset(); });
@@ -974,9 +930,7 @@
       const a = item.querySelector('.faq-a');
       q.addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('#faqList .faq-item').forEach(o => {
-          o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null;
-        });
+        document.querySelectorAll('#faqList .faq-item').forEach(o => { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null; });
         if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
       });
     });
@@ -986,6 +940,77 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ---- Fire mouse trail ---- */
+    (function(){
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fine = window.matchMedia('(pointer: fine)').matches;
+      if (reduce || !fine) return;
+
+      const canvas = document.getElementById('fireCanvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, dpr;
+      function resize(){
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = canvas.width = innerWidth * dpr; H = canvas.height = innerHeight * dpr;
+        canvas.style.width = innerWidth + 'px'; canvas.style.height = innerHeight + 'px';
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      resize(); window.addEventListener('resize', resize);
+
+      // target = real mouse, trail eases toward it for a short delay/follow feel
+      let mx = innerWidth/2, my = innerHeight/2, tx = mx, ty = my, moving = false, lastMove = 0;
+      window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; moving = true; lastMove = performance.now(); });
+
+      const flame = ['255,243,196','232,184,75','201,168,76','123,29,29'];
+      const parts = [];
+      function spawn(x, y, speed){
+        const n = 2 + Math.floor(speed*0.12);
+        for (let k=0; k<n; k++){
+          parts.push({
+            x: x + (Math.random()-0.5)*10,
+            y: y + (Math.random()-0.5)*10,
+            vx: (Math.random()-0.5)*0.7,
+            vy: -0.6 - Math.random()*1.1,
+            life: 1, decay: 0.018 + Math.random()*0.022,
+            size: 7 + Math.random()*9,
+            c: flame[Math.floor(Math.random()*flame.length)]
+          });
+        }
+      }
+
+      function frame(){
+        // ease the trail point toward the mouse -> "follows with a short delay"
+        const px = tx, py = ty;
+        tx += (mx - tx) * 0.18; ty += (my - ty) * 0.18;
+        const dx = tx - px, dy = ty - py;
+        const speed = Math.min(Math.hypot(dx, dy), 40);
+
+        if (moving && performance.now() - lastMove < 120) spawn(tx, ty, speed + 2);
+        else if (Math.random() < 0.4) spawn(tx, ty, 1); // gentle idle ember
+
+        // fade canvas slightly for trailing glow
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = 'rgba(0,0,0,0.18)';
+        ctx.fillRect(0,0,innerWidth,innerHeight);
+
+        ctx.globalCompositeOperation = 'lighter';
+        for (let i = parts.length-1; i>=0; i--){
+          const p = parts[i];
+          p.x += p.vx; p.y += p.vy; p.vy -= 0.01; p.life -= p.decay;
+          if (p.life <= 0){ parts.splice(i,1); continue; }
+          const r = p.size * p.life;
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+          g.addColorStop(0, 'rgba('+p.c+','+(0.55*p.life)+')');
+          g.addColorStop(1, 'rgba('+p.c+',0)');
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2); ctx.fill();
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
   </script>
 </body>
 </html>
