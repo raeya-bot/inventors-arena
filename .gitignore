@@ -1,3 +1,9 @@
 .DS_Store
 node_modules/
 .vercel
+
+# Local reference copy of the live site (not part of the build)
+The Inventors Arena — Where Inventors & Investors Meet.html
+The Inventors Arena — Where Inventors & Investors Meet_files/
+# Stray pasted source (already imported as img/edwin.png)
+pasted_file_*.png
