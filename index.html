@@ -531,6 +531,8 @@
     .hero .bg-photo img { opacity: 0.34; object-position: center 40%; filter: grayscale(0.06) contrast(1.04) brightness(0.62); }
     .cta-bgphoto--arena img { opacity: 0.30; filter: grayscale(0.06) contrast(1.05) brightness(0.8); }
     .bg-photo--arena img { opacity: 0.22; filter: grayscale(0.04) contrast(1.04) brightness(0.78); }
+    /* Brand logo used as a subtle on-brand watermark (navy/gold) */
+    .bg-photo--brand img { opacity: 0.34; object-fit: contain; object-position: center; filter: none; }
     .bg-photo::after {
       content: ""; position: absolute; inset: 0;
       background:
@@ -724,7 +726,6 @@
       <p class="hero-sub">From raw idea to funded invention. Meet the two experts who get inventors funded, then chat with our team to start your journey.</p>
       <div class="hero-cta-row">
         <a class="btn btn--gold" href="#contact">Chat with an Inventor</a>
-        <a class="btn btn--outline" href="#founders">Meet Ed &amp; Scott</a>
       </div>
     </div>
     <a href="#founders" class="scroll-ind" aria-label="Scroll down">
@@ -781,7 +782,6 @@
 
       <div class="founders-cta reveal">
         <a class="btn btn--gold" href="#contact">Chat with an Inventor</a>
-        <a class="btn btn--outline" href="#contact">Book a Call</a>
       </div>
     </div>
   </section>
@@ -790,7 +790,7 @@
 
   <!-- ============== WATCH OUR STORY (redesigned split) ============== -->
   <section class="section section--charcoal tri-watermark" id="watch-story">
-    <span class="bg-photo l" style="--sec-bg:#111827"><img loading="lazy" alt="" aria-hidden="true" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=70" onerror="this.onerror=null;this.src='https://loremflickr.com/1600/900/invention,workshop'" /></span>
+    <span class="bg-photo bg-photo--brand" style="--sec-bg:#111827"><img loading="lazy" alt="" aria-hidden="true" src="img/logo-full.jpg" /></span>
     <div class="wrap">
       <div class="story-grid">
         <div class="story-copy reveal">
@@ -1050,6 +1050,24 @@
             <div class="testi-stars">★★★★★</div>
             <p class="testi-text">These guys really got amazing skills in this field. I'm amazed with the quality of this program.</p>
             <p class="testi-name">Sam Dean, Inventor</p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-quote-mark">&ldquo;</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">The Inventors Arena course is powerful. It is amazing. Thanks to Ed and Scott for putting so much effort to create this well-thought out program.</p>
+            <p class="testi-name">Rose T., Creative Director</p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-quote-mark">&ldquo;</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">An online course isn't so great without solid support. I feel I have received more than my money's worth. That's always a good feeling.</p>
+            <p class="testi-name">Tina James, Creator / Inventor</p>
+          </div>
+          <div class="testi-card">
+            <div class="testi-quote-mark">&ldquo;</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Best course for inventors that I've tried so far. There's so much useful information and it's easy enough to understand. Keep the good work guys.</p>
+            <p class="testi-name">Todd Sorensen, Inventor Coach</p>
           </div>
         </div>
         <div class="carousel-arrows">
