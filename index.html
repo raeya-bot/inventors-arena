@@ -532,7 +532,15 @@
     .cta-bgphoto--arena img { opacity: 0.30; filter: grayscale(0.06) contrast(1.05) brightness(0.8); }
     .bg-photo--arena img { opacity: 0.22; filter: grayscale(0.04) contrast(1.04) brightness(0.78); }
     /* Brand logo used as a subtle on-brand watermark (navy/gold) */
-    .bg-photo--brand img { opacity: 0.34; object-fit: contain; object-position: center; filter: none; }
+    /* Founders: Ed & Scott photo as a banner behind the heading — faces flank the title, center logo masked out */
+    .bg-photo--founders { bottom: auto; height: 540px; }
+    .bg-photo--founders img { opacity: 0.5; object-fit: cover; object-position: center 30%; filter: contrast(1.04) brightness(0.95) blur(2px); }
+    .bg-photo--founders::after {
+      background:
+        radial-gradient(46% 100% at 50% 44%, rgba(13,27,62,0.98) 28%, rgba(13,27,62,0.6) 56%, transparent 80%),
+        linear-gradient(180deg, rgba(13,27,62,0.42), transparent 26%, transparent 50%, var(--sec-bg));
+    }
+    @media (max-width: 700px) { .bg-photo--founders { height: 400px; } }
     .bg-photo::after {
       content: ""; position: absolute; inset: 0;
       background:
@@ -737,7 +745,7 @@
 
   <!-- ============== FOUNDERS: FOCAL POINT ============== -->
   <section class="section section--navy tri-watermark" id="founders">
-    <span class="bg-photo" style="--sec-bg:#0d1b3e"><img loading="lazy" alt="" aria-hidden="true" src="img/ed-scott-podcast.png" /></span>
+    <span class="bg-photo bg-photo--founders" style="--sec-bg:#0d1b3e"><img loading="lazy" alt="" aria-hidden="true" src="img/ed-scott-podcast.png" /></span>
     <span class="deco bp silver deco-right deco-bottom" style="opacity:.045"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
     <div class="wrap">
       <div class="center founders-intro reveal">
@@ -790,7 +798,6 @@
 
   <!-- ============== WATCH OUR STORY (redesigned split) ============== -->
   <section class="section section--charcoal tri-watermark" id="watch-story">
-    <span class="bg-photo bg-photo--brand" style="--sec-bg:#111827"><img loading="lazy" alt="" aria-hidden="true" src="img/logo-full.jpg" /></span>
     <div class="wrap">
       <div class="story-grid">
         <div class="story-copy reveal">
