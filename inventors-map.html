@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventors Map | The Inventors Arena</title>
+  <meta name="description" content="A global community of inventors and investors. See where The Inventors Arena community spans and follow the complete program journey from idea to funded." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Fire mouse trail -->
+  <canvas id="fireCanvas"></canvas>
+
+  <!-- Reusable patent / blueprint figure (decorative) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="bp-fig" viewBox="0 0 240 300">
+      <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M8 8 H26 M8 8 V26 M232 8 H214 M232 8 V26 M8 292 H26 M8 292 V274 M232 292 H214 M232 292 V274"/>
+        <circle cx="120" cy="116" r="66" stroke-width="6" stroke-dasharray="5 9"/>
+        <circle cx="120" cy="116" r="58"/>
+        <circle cx="120" cy="116" r="40"/>
+        <circle cx="120" cy="116" r="9"/>
+        <line x1="120" y1="40" x2="120" y2="192"/>
+        <line x1="44" y1="116" x2="196" y2="116"/>
+        <rect x="150" y="206" width="62" height="40" rx="4"/>
+        <line x1="162" y1="206" x2="162" y2="246"/>
+        <line x1="186" y1="206" x2="186" y2="246"/>
+        <line x1="150" y1="176" x2="170" y2="150"/>
+        <circle cx="176" cy="142" r="11"/>
+        <line x1="70" y1="170" x2="40" y2="206"/>
+        <circle cx="32" cy="214" r="11"/>
+        <line x1="44" y1="262" x2="120" y2="262"/>
+        <path d="M44 258 L44 266 M120 258 L120 266"/>
+        <g stroke-width="0.7">
+          <line x1="44" y1="232" x2="58" y2="218"/>
+          <line x1="52" y1="240" x2="72" y2="220"/>
+          <line x1="62" y1="244" x2="82" y2="224"/>
+        </g>
+      </g>
+      <text x="172" y="146" font-family="Inter, sans-serif" font-size="11" fill="currentColor">1</text>
+      <text x="28" y="218" font-family="Inter, sans-serif" font-size="11" fill="currentColor">2</text>
+      <text x="150" y="288" font-family="Cinzel, serif" font-size="13" letter-spacing="2" fill="currentColor">FIG. 1</text>
+    </symbol>
+  </svg>
+
+  <!-- ============================ NAV ============================ -->
+  <nav class="nav scrolled" id="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html#home" class="nav-logo" aria-label="The Inventors Arena home">
+        <span class="badge badge--nav">
+          <svg width="46" height="40" viewBox="0 0 46 40" role="img" aria-label="The Inventors Arena badge">
+            <defs>
+              <linearGradient id="triEdge" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#F2DC9B"/><stop offset="0.5" stop-color="#C9A84C"/><stop offset="1" stop-color="#8a6f2d"/>
+              </linearGradient>
+              <radialGradient id="flameG" cx="0.5" cy="0.7" r="0.7">
+                <stop offset="0" stop-color="#FFF3C4"/><stop offset="0.45" stop-color="#E8B84B"/><stop offset="1" stop-color="#C9A84C"/>
+              </radialGradient>
+              <linearGradient id="triFace" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#16233d"/><stop offset="1" stop-color="#0A1628"/>
+              </linearGradient>
+            </defs>
+            <path d="M23 3 L43 37 L3 37 Z" fill="url(#triEdge)"/>
+            <path d="M23 8 L38.5 35 L7.5 35 Z" fill="url(#triFace)"/>
+            <g class="flame">
+              <path d="M23 16 C26 19 26.5 23 24 26 C26.5 25.5 27 22 25.5 20 C28 22 28 26 25.5 28.5 C24.3 29.7 21.7 29.7 20.5 28.5 C18 26 18.5 22 21 20 C20 22 20.5 24.5 22 25 C20 22.5 21 18.5 23 16 Z" fill="url(#flameG)"/>
+            </g>
+          </svg>
+          <span class="badge-text">THE INVENTORS ARENA</span>
+        </span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="inventors-map.html">Inventors Map</a></li>
+        <li><a href="free-downloads.html">Free Downloads</a></li>
+        <li><a href="next-level.html">Next Level Offerings</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a class="btn btn--outline" href="https://courses.milesoft.app/login" target="_blank" rel="noopener">Portal Login</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="index.html#home">Home</a>
+    <a href="inventors-map.html">Inventors Map</a>
+    <a href="free-downloads.html">Free Downloads</a>
+    <a href="next-level.html">Next Level Offerings</a>
+    <a href="#contact">Contact Us</a>
+    <a class="btn btn--outline" href="https://courses.milesoft.app/login" target="_blank" rel="noopener">Portal Login</a>
+  </div>
+
+  <!-- ===================== GLOBAL COMMUNITY ===================== -->
+  <section class="section section--navy tri-watermark" id="inventors-map" style="padding-top:150px;">
+    <span class="deco bp deco-right deco-top deco-flip"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <div class="wrap center reveal">
+      <span class="pre-label">Global Community</span>
+      <h2 class="section-head">Inventors Map</h2>
+      <p class="section-sub">Inventors and investors from around the world are part of The Inventors Arena community. Connect, collaborate, and grow together.</p>
+
+      <div class="stats-row">
+        <div class="stat reveal">
+          <div class="stat-num">500+</div>
+          <span class="stat-label">Active Inventors</span>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">30+</div>
+          <span class="stat-label">Countries Represented</span>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">120+</div>
+          <span class="stat-label">Products Launched</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule" />
+
+  <!-- ===================== ROADMAP / COMPLETE PROGRAM JOURNEY ===================== -->
+  <section class="section roadmap tri-watermark" id="journey">
+    <span class="bg-photo bg-photo--arena"><img loading="lazy" alt="" aria-hidden="true" src="img/arena-gladiator.png" /></span>
+    <div class="wrap center reveal">
+      <span class="pre-label">The Inventor's Map</span>
+      <h2 class="section-head">The Complete Program Journey</h2>
+      <p class="section-sub">Every great invention follows a path. Follow the trail from the first spark to a funded, market-ready product, the same journey we guide you through, step by step, in the Complete Program.</p>
+    </div>
+    <div class="wrap">
+      <div class="trail">
+        <svg class="trail-path" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 C 22 70 22 120 50 170 S 78 270 50 320 S 22 430 50 490 S 78 600 50 660 S 22 770 50 830 S 78 940 50 1000"/></svg>
+        <ol class="trail-list">
+        <!-- I -->
+        <li class="stop reveal">
+          <span class="stop-marker">I</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30c4 6 10 8 18 8s14-2 18-8"/><path d="M6 30l4-2 4 2 4-2 4 2 4-2 4 2 4-2 4 2"/><path d="M24 28V8"/><path d="M24 10c6 1 11 4 13 8-5 1-9 1-13-1z"/><path d="M9 30c-1-4 0-7 2-9"/></svg>
+            <span class="stop-era">The Age of Sagas</span>
+            <h3>The Spark</h3>
+            <p>Master invention development, turning a raw idea into a clear, fundable concept worth setting sail for.</p>
+          </div>
+        </li>
+        <!-- II -->
+        <li class="stop reveal">
+          <span class="stop-marker">II</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10c-2 0-4 2-4 4v22c0-2 2-4 4-4h22V10z"/><path d="M34 10c2 0 4 2 4 4s-2 4-4 4"/><path d="M16 18h14M16 24h14M16 30h9"/></svg>
+            <span class="stop-era">The Age of Charters</span>
+            <h3>The Search</h3>
+            <p>A comprehensive patent search methodology, so you stake your claim and save thousands on costly mistakes.</p>
+          </div>
+        </li>
+        <!-- III -->
+        <li class="stop reveal">
+          <span class="stop-marker">III</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="3"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4"/></svg>
+            <span class="stop-era">The Age of the Forge</span>
+            <h3>The Proving Ground</h3>
+            <p>Market evaluation and validation techniques plus reality strategic planning tools to test demand fast.</p>
+          </div>
+        </li>
+        <!-- IV -->
+        <li class="stop reveal">
+          <span class="stop-marker">IV</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="7" width="30" height="34" rx="2"/><path d="M15 15h12M15 21h18M15 27h18M15 33h10"/><path d="M30 7v8h9"/></svg>
+            <span class="stop-era">The Age of Blueprints</span>
+            <h3>The Blueprint</h3>
+            <p>A complete business plan template and financial forecasts, the master plan behind every funded invention.</p>
+          </div>
+        </li>
+        <!-- V -->
+        <li class="stop reveal">
+          <span class="stop-marker">V</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c5 4 8 9 8 15a8 8 0 0 1-16 0c0-6 3-11 8-15z"/><path d="M20 33h8M21 38h6"/><path d="M24 14c2 2 3 4 3 7"/></svg>
+            <span class="stop-era">The Age of Invention</span>
+            <h3>The Armory</h3>
+            <p>A professional pitch deck starter kit and AI-generated business plan and pitch tools to arm you for battle.</p>
+          </div>
+        </li>
+        <!-- VI -->
+        <li class="stop reveal">
+          <span class="stop-marker">VI</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18l16-9 16 9-16 9z"/><path d="M12 21v10M20 25v9M28 25v9M36 21v10"/><path d="M8 38h32"/></svg>
+            <span class="stop-era">The Modern Arena</span>
+            <h3>The Arena</h3>
+            <p>Mastering investor presentations, the moment you step into the arena and deliver the pitch with confidence.</p>
+          </div>
+        </li>
+        <!-- VII -->
+        <li class="stop reveal">
+          <span class="stop-marker">VII</span>
+          <div class="stop-card">
+            <svg class="stop-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5c6 4 9 11 9 19l-4 8H19l-4-8c0-8 3-15 9-19z"/><circle cx="24" cy="20" r="3"/><path d="M19 32l-5 6 7-2M29 32l5 6-7-2"/></svg>
+            <span class="stop-era">The Funded Future</span>
+            <h3>The Conquest</h3>
+            <p>Funded and market-ready, with ongoing support and access to the Inventors Arena community for the road ahead.</p>
+          </div>
+        </li>
+        </ol>
+      </div>
+
+      <div class="trail-end reveal">
+        <p class="trail-note">This is the path of the Complete Program, from idea to funded.</p>
+        <a class="btn btn--gold" href="https://api.leadconnectorhq.com/widget/booking/hk02ntONTIVWaqVbdO2K" target="_blank" rel="noopener">Book a Call to Begin Your Journey</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="gold-rule" />
+
+  <!-- ===================== CONNECT WITH US ===================== -->
+  <section class="section section--navy final-cta" id="contact">
+    <span class="cta-bgphoto cta-bgphoto--arena">
+      <img loading="lazy" alt="" aria-hidden="true" src="img/arena-colosseum.webp" />
+    </span>
+    <span class="deco bp deco-left deco-bottom"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <span class="deco bp deco-right deco-top deco-flip"><svg viewBox="0 0 240 300" style="width:100%"><use href="#bp-fig"/></svg></span>
+    <div class="wrap reveal">
+      <h2>Ready to Enter the Arena?</h2>
+      <p class="section-sub" style="margin:0 auto 38px;">Join hundreds of inventors who have transformed their ideas into funded, market-ready products with the guidance of The Inventors Arena team.</p>
+      <a class="btn btn--gold" href="https://api.leadconnectorhq.com/widget/booking/hk02ntONTIVWaqVbdO2K" target="_blank" rel="noopener">Chat with a Consultant</a>
+    </div>
+  </section>
+
+  <hr class="gold-rule" />
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <span class="badge badge--lg">
+            <svg width="58" height="50" viewBox="0 0 46 40" role="img" aria-label="The Inventors Arena badge">
+              <path d="M23 3 L43 37 L3 37 Z" fill="url(#triEdge)"/>
+              <path d="M23 8 L38.5 35 L7.5 35 Z" fill="url(#triFace)"/>
+              <g class="flame"><path d="M23 16 C26 19 26.5 23 24 26 C26.5 25.5 27 22 25.5 20 C28 22 28 26 25.5 28.5 C24.3 29.7 21.7 29.7 20.5 28.5 C18 26 18.5 22 21 20 C20 22 20.5 24.5 22 25 C20 22.5 21 18.5 23 16 Z" fill="url(#flameG)"/></g>
+            </svg>
+            <span class="badge-text">THE INVENTORS ARENA</span>
+          </span>
+          <p class="footer-tag">Where Inventors &amp; Investors Meet. Your journey from idea to funded invention starts here.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="inventors-map.html">Inventors Map</a></li>
+            <li><a href="free-downloads.html">Free Downloads</a></li>
+            <li><a href="next-level.html">Next Level Offerings</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p class="footer-contact"><a href="mailto:info@inventors-arena.com">info@inventors-arena.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 The Inventors Arena. All rights reserved.</p>
+        <p class="footer-fine">Pricing shown as $2,995. Credit card orders subject to a processing fee.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="chat-callout" href="https://api.leadconnectorhq.com/widget/booking/hk02ntONTIVWaqVbdO2K" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    Questions? Chat with a Consultant Now
+  </a>
+
+  <script src="site.js"></script>
+</body>
+</html>
